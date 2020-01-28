@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Catalog.views import hello, show_products, create_product
+from Catalog.views import hello, show_products, create_product, edit_product
 
 
 # path: route in url, function from views, name pass to html
@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello),
     path('products/', show_products),
-    path('create_product/', create_product)
+    path('create_product/', create_product),
+    path('edit_product/<id>', edit_product, name='edit_product_route'),
 ]
