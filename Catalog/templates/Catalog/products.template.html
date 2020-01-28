@@ -11,7 +11,10 @@
     <ul>
         {% for product in catalog %}
         <li>
-            Cateogry: {{ product.category }} |
+            Category: {{ product.category }} |
+            {% for p in product.hashtags.all %} 
+            <span>#{{ p.name }}</span> |
+            {% endfor %}
             {{product.name }} x {{product.stock}} 
             <a href='{% url "edit_product_route" id=product.id %}'>Edit</a>
             <a href='/delete_product/{{product.id}}'>Delete</a>    

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Catalog',
+    'Accounts',
     
 ]
 
@@ -125,3 +126,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+AUTH_USER_MODEL = 'Accounts.MyUser' 
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by custom User model, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+)
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
