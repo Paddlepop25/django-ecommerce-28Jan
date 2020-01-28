@@ -7,12 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Create a new category</h2>
-    <form method='POST'>
-
-        {{form.as_p}}
-        {%csrf_token%}
-        <input type='submit' value='Create new Category'/>
-    </form>
+    <ul>
+        {% for c in every_categories %}
+        <li>{{c.name}}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html> 

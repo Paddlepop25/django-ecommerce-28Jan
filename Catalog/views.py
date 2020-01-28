@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .forms import ProductForm
-from .models import Product
+from .forms import ProductForm, CategoryForm
+from .models import Product, Category
 
 # Create your views here.
 def hello(request):
@@ -54,3 +54,24 @@ def delete_product(request, id):
     product_being_deleted.delete()
     return redirect(show_products)
         
+def show_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'Catalog/view_category.template.html', {
+        'every_categories':categories
+    })        
+    
+def create_category(request):
+    if request.method == 'GET':
+        f = CategoryForm() # create a new object using the CategoryForm blueprint, and assign to f
+        return render(request, 'Catalog/create_category.template.html', {
+            'form': f
+        })
+    else:
+
+        f = CategoryForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return redirect(show_categories)
+        else:
+            print(f.errors)
+            return HttpResponse("Error")    
