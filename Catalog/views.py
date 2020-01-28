@@ -48,3 +48,9 @@ def edit_product(request, id):
         return render(request, 'Catalog/edit_product.template.html', {
             'form':edit_form
         })  
+        
+def delete_product(request, id):
+    product_being_deleted = get_object_or_404(Product, pk=id)
+    product_being_deleted.delete()
+    return redirect(show_products)
+        
