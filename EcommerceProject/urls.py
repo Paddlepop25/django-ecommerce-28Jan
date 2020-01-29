@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Catalog.views import hello, show_products, create_product, edit_product, delete_product, show_categories, create_category
-from Accounts.views import index as accounts_index, logout, login
+from Accounts.views import index as accounts_index, logout, login, profile, register
 
 # path: route in url, function from views, name pass to views(redirect(reverse)...)
+# when the user go to user/register route, it will call the register function and i'll call this route register as well
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello),
@@ -31,4 +32,6 @@ urlpatterns = [
     path('user/', accounts_index, name='user_index'),
     path('user/logout', logout, name='logout'),
     path('user/login', login, name='login'),
+    path('user/profile', profile, name='profile'),
+    path('user/register', register, name='register'),
 ]

@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-    Logged In As: {{request.user.username}}
-    
-    
-    <hr> {% if messages %}
-    <div>
-        {% for message in messages %} {{ message }} {% endfor %}
-    </div>
-    {% endif %}
+{% extends 'base.template.html' %}
 
-    <ul>
-        <li><a href='{% url 'login' %}'/>Login</li></a>
-        <li>Register</li>
-        <li>Profile</li>
-        <li><a href='{% url 'logout' %}'/>Logout</a></li>
-    </ul>
+{% block page_title %}
+<h1>Home</h1>
+{% endblock %}
 
-</body>
-</html> 
+
+{% block content %}
+<p>Welcome to our website</p>
+{% endblock %}
