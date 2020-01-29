@@ -1,8 +1,10 @@
 {% extends 'base.template.html' %}
+{% load static %}
 
 {% block page_title %} {{user}}'s Profile {% endblock %}
 
 {% block content %}
 <h1>You are you!</h1>
 <p>Your email: {{ user.email }}</p>
+<img src='{% static 'bulldog.jpeg' %}'/>
 {% endblock %}

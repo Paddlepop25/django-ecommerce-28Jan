@@ -11,7 +11,7 @@ def index(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have been logged out")
-    return redirect(reverse('user_index'))
+    return redirect(reverse('index'))
 
 def login(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def login(request):
             # log a user in
             auth.login(user=user, request=request)
             messages.success(request, 'You have logged in successfully')
-            return redirect(reverse('user_index'))
+            return redirect(reverse('index'))
         else:
             # user is None
             login_form.add_error(None, "Invalid user name or password")
@@ -70,7 +70,7 @@ def register(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, 'Registration successful!')
-                return redirect(reverse('user_index'))
+                return redirect(reverse('index'))
             else:
                 messages.error(request, 'Sorry, unable to register your account')
                 return redirect(reverse('index'))

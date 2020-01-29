@@ -136,3 +136,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+# my_project/settings.py
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

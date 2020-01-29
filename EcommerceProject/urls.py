@@ -14,24 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from Catalog.views import hello, show_products, create_product, edit_product, delete_product, show_categories, create_category
-from Accounts.views import index as accounts_index, logout, login, profile, register
+# from Accounts.views import index as accounts_index, logout, login, profile, register
 
 # path: route in url, function from views, name pass to views(redirect(reverse)...)
 # when the user go to user/register route, it will call the register function and i'll call this route register as well
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello),
-    path('products/', show_products),
-    path('create_product/', create_product),
-    path('edit_product/<id>', edit_product, name='edit_product_route'),
-    path('delete_product/<id>', delete_product),
-    path('categories/', show_categories),
-    path('create_category/', create_category),
-    path('user/', accounts_index, name='user_index'),
-    path('user/logout', logout, name='logout'),
-    path('user/login', login, name='login'),
-    path('user/profile', profile, name='profile'),
-    path('user/register', register, name='register'),
+    path('product/', include('Catalog.urls')),
+    path('user/', include('Accounts.urls')),
+    path('user/', include('django.contrib.auth.urls')),
 ]

@@ -1,6 +1,8 @@
 from django import forms
+# from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from .models import MyUser
 
 class LoginForm(forms.Form):
@@ -16,6 +18,8 @@ class RegisterForm(UserCreationForm):
         model = MyUser # from models. to give reward points
         fields = ['email', 'username', 'password1', 'password2']
         
+    # clean_ function is for diff things like round up decimal points of whatever user has input. used to check for things    
+    
     # check if email user enter exist already in database when user register. if exist, error    
     def clean_email(self):
         # this is the email address the user has keyed in
@@ -33,5 +37,11 @@ class RegisterForm(UserCreationForm):
         # returns this if no error
         return user_email    
         
-    # clean_ function is for diff things like round up decimal points of whatever user has input. used to check for things    
+    def clean_password(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
         
+        if password1 != password2:
+            raise forms.ValidationError('Password does not match')
+            
+        return password1    
